@@ -21,10 +21,11 @@ body {
   background-color: #333;
   width: 600px;
   height: 600px;
+  background-image: url(../images/istockphoto-1343712844-612x612.png);
+  background-image: no-repeat;
 }
 
 .grid-cell {
-  border: 1px solid lightgrey;
   flex-grow: 1;
   height: 10%;
   width: 10%;
@@ -33,8 +34,8 @@ body {
 .snake-body {
   z-index: 5;
   position: relative;
-  background: green;
-  box-shadow: 0 0px green, 0 0 20px green;
+  background: black;
+  box-shadow: 0 0px black, 0 0 20px black;
 }
 
 .food {

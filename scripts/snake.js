@@ -1,9 +1,9 @@
-// Initiates the game
+// Initiate the game
 document.addEventListener("DOMContentLoaded", createGrid);
 
 //define default variables
 let gameBoard;
-const snakeBody = [{ row: 0, column: 0 }];
+const snakeBody = [0, 1, 2, 3, 4, 5];
 const speed = 2;
 let foodPosition = 0;
 let direction = "Right";
@@ -57,49 +57,48 @@ function startGame() {
 }
 
 function moveSnake() {
-  let newRow;
-  let newColumn;
+  snakeBody.forEach((cell) => {
+    gameBoard.children[cell].classList.remove("snake-body");
+  });
   const head = snakeBody[snakeBody.length - 1]; //this is the head of the snake
   if (direction === "Right") {
+    snakeBody.splice(0, 1); //removes the first element from the array(removes position 0)
+    snakeBody.push(head + 1);
     //we are checking which direction snake is moving
-    newRow = head.row;
-    newColumn = head.column + 1;
   }
   if (direction === "Left") {
-    newRow = head.row;
-    newColumn = head.column - 1;
+    snakeBody.splice(0, 1); //removes the first element from the array(removes position 0)
+    snakeBody.push(head - 1);
   }
   if (direction === "Up") {
-    newRow = head.row - 1;
-    newColumn = head.column;
+    snakeBody.splice(0, 1); //removes the first element from the array(removes position 0)
+    snakeBody.push(head - 10);
   }
   if (direction === "Down") {
-    newRow = head.row + 1;
-    newColumn = head.column;
+    snakeBody.splice(0, 1); //removes the first element from the array(removes position 0)
+    snakeBody.push(head + 10);
   }
-  if (newRow > 9 || newRow < 0 || newColumn > 9 || newColumn < 0) {
-    clearInterval(timer);
-    alert("Game Over!!");
-  }
-  snakeBody.push({ row: newRow, column: newColumn });
+
   updateSnakeOnScreen();
 }
 
 function updateSnakeOnScreen() {
-  const headObject = snakeBody[snakeBody.length - 1]; //{row:1,column:1}
-  const tailObject = snakeBody.shift();
+  snakeBody.forEach((cell) => {
+    gameBoard.children[cell].classList.add("snake-body");
+  });
+  const head = snakeBody[snakeBody.length - 1];
+  const x = head % 10;
+  const rightHandwall = x === 9;
+  console.log(rightHandwall, direction);
+  const leftHandwall = x === 0; // if the head is going to be in or not
+  if (rightHandwall && direction === "Right") {
+    alert("Game Over!!");
+  }
 
-  const head = parseInt(headObject.row + "" + headObject.column); //concatenate to get the right cell
-  const tail = parseInt(tailObject.row + "" + tailObject.column);
-
-  gameBoard.children[head].classList.add("snake-body");
-
-  // Removes the tail block
-  gameBoard.children[tail].classList.remove("snake-body");
   if (foodPosition === head) {
     gameBoard.children[foodPosition].classList.remove("food");
     //if snake eats the food, put the tail back to expand the snake
-    snakeBody.unshift(tailObject);
+    //snakeBody.unshift(tailObject);
   }
   generateFood();
 }
