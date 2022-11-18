@@ -6,13 +6,14 @@ html,
 body {
   height: 100vh;
   margin: 0;
-
+  width: 100vw;
   color: rgb(126, 63, 5);
   justify-content: center;
   align-items: center;
   background: linear-gradient(to right, #303031, #313a49, #02010c);
+  background-image: url(../images/desktop-1680x1050.jpg);
+  background-size: cover;
 }
-
 h1 {
   text-transform: Uppercase;
   margin-bottom: 0.2em;
@@ -20,7 +21,6 @@ h1 {
   font-size: 4rem;
   color: #04034b;
   text-align: center;
-  background-image: url(../images/82724-food-airpods-apple-fruit-homepod-free-clipart-hq-thumb.png);
 }
 
 h1 {
@@ -32,6 +32,7 @@ h1 {
 h1 {
   display: center;
   font-size: 4em;
+
   margin-inline-start: 650px;
   margin-inline-end: 590px;
   font-weight: bold;
@@ -41,23 +42,23 @@ p {
   text-align: top;
   font-size: x-large;
   font-weight: bold;
+  background-color: green;
+  width: fit-content;
+  height: fit-content;
 }
 .game-board {
   align-items: center;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2);
   display: flex;
   flex-wrap: wrap;
-  height: 100%;
   background-color: #333;
-  width: 600px;
-  height: 600px;
+  width: 65vmin;
+  height: 65vmin;
   background-image: url(../images/istockphoto-1343712844-612x612.png);
-  margin-right: 200px;
-  margin-top: 50px;
-  margin-bottom: 800px;
   border: black 1px solid;
   background-size: cover;
   margin-left: 700px;
+  justify-content: center;
 }
 
 .grid-cell {
@@ -69,11 +70,13 @@ p {
 .snake-body {
   z-index: 5;
   position: relative;
-  background: black;
-  box-shadow: 0 0px black, 0 0 20px black;
+  background: rgb(4, 68, 2);
+  box-shadow: 0 0px rgb(4, 68, 2) 0 0 20px rgb(4, 68, 2);
 }
 
 .food {
-  background: red;
-  box-shadow: 0 0px red, 0 0 20px red;
+  background-image: url(../images/red-apple-with-happy-face_1308-9211.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
